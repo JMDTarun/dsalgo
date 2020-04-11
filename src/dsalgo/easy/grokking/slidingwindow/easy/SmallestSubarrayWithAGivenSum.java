@@ -1,4 +1,4 @@
-package dsalgo.easy.grokking.slidingwindow;
+package dsalgo.easy.grokking.slidingwindow.easy;
 
 public class SmallestSubarrayWithAGivenSum {
 

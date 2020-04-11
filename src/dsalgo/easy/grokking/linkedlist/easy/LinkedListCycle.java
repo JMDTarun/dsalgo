@@ -1,4 +1,4 @@
-package dsalgo.easy.grokking.linkedlist;
+package dsalgo.easy.grokking.linkedlist.easy;
 
 import dsalgo.easy.grokking.common.LinkedList;
 

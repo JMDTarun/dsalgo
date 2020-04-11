@@ -1,4 +1,4 @@
-package dsalgo.easy.grokking.twopointer;
+package dsalgo.easy.grokking.twopointer.easy;
 
 import java.util.Arrays;
 

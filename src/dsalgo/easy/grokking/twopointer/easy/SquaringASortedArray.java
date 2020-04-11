@@ -1,4 +1,4 @@
-package dsalgo.medium.twopointers;
+package dsalgo.easy.grokking.twopointer.easy;
 
 public class SquaringASortedArray {
 

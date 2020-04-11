@@ -1,4 +1,4 @@
-package dsalgo.easy.grokking.cyclicsort;
+package dsalgo.easy.grokking.cyclicsort.easy;
 
 public class CyclicSort {
 

@@ -1,4 +1,4 @@
-package dsalgo.easy.grokking.inplacereversal;
+package dsalgo.easy.grokking.inplacereversal.easy;
 
 import dsalgo.easy.grokking.common.LinkedList;
 

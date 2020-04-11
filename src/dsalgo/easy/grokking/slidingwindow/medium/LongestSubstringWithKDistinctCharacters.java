@@ -1,4 +1,4 @@
-package dsalgo.medium.slidingwindow;
+package dsalgo.easy.grokking.slidingwindow.medium;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,7 +59,6 @@ public class LongestSubstringWithKDistinctCharacters {
 					maxLength = windowEnd - windowStart;
 				}
 			}
-
 		}
 		return maxLength;
 	}

@@ -1,4 +1,4 @@
-package dsalgo.easy.grokking.bfs;
+package dsalgo.easy.grokking.bfs.easy;
 
 import java.util.LinkedList;
 import java.util.Queue;
