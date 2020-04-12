@@ -62,19 +62,21 @@ public class SquaringASortedArray {
 			if (startSquare > endSquare) {
 				squares[j] = startSquare;
 				startPointer++;
-				j--;
 			} else {
 				squares[j] = endSquare;
 				endPointer--;
-				j--;
 			}
+			j--;
 		}
 		return squares;
 	}
 
 	public static void main(String[] args) {
-		int[] arr = { -2, -1, 0, 1, 2, 3, 4, 5 };
-		makeSquareRoot(arr);
+		int[] arr = { -6,-5,-4,-3,-2,-1,0,1,2 };
+		int[] makeSquareRoot = makeSquareRoot(arr);
+		for (Integer a : makeSquareRoot) {
+			System.out.println(a);
+		}
 	}
 
 }

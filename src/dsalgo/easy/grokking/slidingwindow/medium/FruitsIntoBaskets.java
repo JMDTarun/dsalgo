@@ -39,12 +39,10 @@ public class FruitsIntoBaskets {
 			if (characterSet.get(arr[windowEnd]) != null) {
 				Integer occurances = characterSet.get(arr[windowEnd]);
 				characterSet.put(arr[windowEnd], ++occurances);
-				windowEnd++;
 			} else {
 				characterSet.put(arr[windowEnd], 1);
-				windowEnd++;
 			}
-
+			windowEnd++;
 			while (characterSet.size() > 2) {
 				Integer occurances = characterSet.get(arr[windowStart]);
 				occurances -= 1;
@@ -55,7 +53,7 @@ public class FruitsIntoBaskets {
 				}
 				windowStart++;
 			}
-			if (characterSet.size() <= 2) {
+			if (characterSet.size() == 2) {
 				if (maxLength < (windowEnd - windowStart)) {
 					maxLength = windowEnd - windowStart;
 				}

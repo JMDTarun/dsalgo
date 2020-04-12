@@ -27,34 +27,32 @@ public class LongestSubstringWithKDistinctCharacters {
 	//
 
 	public static int findLengh(String str, int k) {
-		Map<Character, Integer> characterSet = new HashMap<>();
+		Map<Character, Integer> characterMap = new HashMap<>();
 		char[] arr = str.toCharArray();
 		int windowStart = 0;
 		int windowEnd = 0;
 		int maxLength = 0;
 
 		while (windowEnd < arr.length) {
-			if (characterSet.get(arr[windowEnd]) != null) {
-				Integer occurances = characterSet.get(arr[windowEnd]);
-				characterSet.put(arr[windowEnd], ++occurances);
-				windowEnd++;
+			if (characterMap.get(arr[windowEnd]) != null) {
+				Integer occurances = characterMap.get(arr[windowEnd]);
+				characterMap.put(arr[windowEnd], ++occurances);
 			} else {
-				characterSet.put(arr[windowEnd], 1);
-				windowEnd++;
+				characterMap.put(arr[windowEnd], 1);
 			}
-
-			while (characterSet.size() > k) {
-				Integer occurances = characterSet.get(arr[windowStart]);
+			windowEnd++;
+			while (characterMap.size() > k) {
+				Integer occurances = characterMap.get(arr[windowStart]);
 				occurances -= 1;
 				if (occurances == 0) {
-					characterSet.remove(arr[windowStart]);
+					characterMap.remove(arr[windowStart]);
 				} else {
-					characterSet.put(arr[windowStart], occurances);
+					characterMap.put(arr[windowStart], occurances);
 				}
 				windowStart++;
 			}
 
-			if (characterSet.size() <= k) {
+			if (characterMap.size() == k) {
 				if (maxLength < (windowEnd - windowStart)) {
 					maxLength = windowEnd - windowStart;
 				}
