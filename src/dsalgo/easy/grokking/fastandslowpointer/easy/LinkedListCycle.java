@@ -1,4 +1,4 @@
-package dsalgo.easy.grokking.linkedlist.easy;
+package dsalgo.easy.grokking.fastandslowpointer.easy;
 
 import dsalgo.easy.grokking.common.LinkedList;
 
