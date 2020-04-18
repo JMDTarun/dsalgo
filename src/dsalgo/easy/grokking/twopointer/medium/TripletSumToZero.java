@@ -1,0 +1,54 @@
+package dsalgo.easy.grokking.twopointer.medium;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class TripletSumToZero {
+
+	// Given an array of unsorted numbers, find all unique triplets in it that add
+	// up to zero.
+
+	// Input: [-3, 0, 1, 2, -1, 1, -2]
+	// Output: [-3, 1, 2], [-2, 0, 2], [-2, 1, 1], [-1, 0, 1]
+	// Explanation: There are four unique triplets whose sum is equal to zero.
+	//
+	// Input: [-5, 2, -1, -2, 3]
+	// Output: [[-5, 2, 3], [-2, -1, 3]]
+	// Explanation: There are two unique triplets whose sum is equal to zero.
+
+	public static List<List<Integer>> searchTriplets(int[] arr) {
+		List<List<Integer>> triplets = new ArrayList<>();
+		Arrays.sort(arr);
+
+		List<Integer> triplet = new ArrayList<>();
+		for (int i = 0; i < arr.length; i++) {
+			int startPointer = i + 1;
+			int endPointer = arr.length - 1;
+			triplet.add(arr[i]);
+			while (startPointer < endPointer) {
+				if ((arr[startPointer] + arr[endPointer]) + arr[i] == 0) {
+					triplet.add(arr[startPointer]);
+					triplet.add(arr[endPointer]);
+					startPointer++;
+					endPointer--;
+					triplets.add(new ArrayList<>(triplet));
+					triplet.clear();
+					triplet.add(arr[i]);
+				} else if ((arr[startPointer] + arr[endPointer]) + arr[i] <= 0) {
+					startPointer++;
+				} else {
+					endPointer--;
+				}
+			}
+			triplet.clear();
+		}
+		return triplets;
+	}
+
+	public static void main(String[] args) {
+		int[] arr = { -3, 0, 1, 2, -1, 1, -2 };
+		System.out.println(searchTriplets(arr));
+	}
+
+}
