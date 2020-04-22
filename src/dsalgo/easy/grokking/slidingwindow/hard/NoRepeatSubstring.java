@@ -23,17 +23,15 @@ public class NoRepeatSubstring {
 
 	public static int findLength(String str) {
 		char[] arr = str.toCharArray();
-		int windowStart = 0;
 		int windowEnd = 0;
 		int maxLength = 1;
 		Set<Character> set = new HashSet<>();
-		set.add(arr[windowStart]);
+		set.add(arr[windowEnd]);
 		while (windowEnd < arr.length - 1) {
 			windowEnd++;
 			if (set.contains(arr[windowEnd])) {
 				set.clear();
 				set.add(arr[windowEnd]);
-				windowStart = windowEnd;
 			} else {
 				set.add(arr[windowEnd]);
 			}
