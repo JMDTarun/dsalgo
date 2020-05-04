@@ -4,16 +4,16 @@ import dsalgo.common.TreeNode;
 
 public class SumOfPathNumbers {
 
-	public static int findSumOfPathNumbers(TreeNode treeNode, int multiplier, int sum) {
+	public static int findSumOfPathNumbers(TreeNode treeNode, int sum) {
 		if (treeNode == null) {
 			return -1;
 		}
-		sum = (sum * multiplier) + treeNode.val;
+		sum = (sum * 10) + treeNode.val;
 		if (treeNode.left == null && treeNode.right == null) {
 			return sum;
 		}
-		int leftSum = findSumOfPathNumbers(treeNode.left, multiplier, sum);
-		int rightSum = findSumOfPathNumbers(treeNode.right, multiplier, sum);
+		int leftSum = findSumOfPathNumbers(treeNode.left, sum);
+		int rightSum = findSumOfPathNumbers(treeNode.right, sum);
 		return leftSum + rightSum;
 	}
 
@@ -23,7 +23,7 @@ public class SumOfPathNumbers {
 		treeNode.right = new TreeNode(9);
 		treeNode.right.left = new TreeNode(2);
 		treeNode.right.right = new TreeNode(9);
-		System.out.println(findSumOfPathNumbers(treeNode, 10, 0));
+		System.out.println(findSumOfPathNumbers(treeNode, 0));
 	}
 
 }

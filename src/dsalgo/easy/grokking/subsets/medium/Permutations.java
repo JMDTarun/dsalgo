@@ -7,44 +7,23 @@ public class Permutations {
 
 	public static List<List<Integer>> findPermutations(int[] num) {
 		List<List<Integer>> subsets = new ArrayList<>();
-		List<List<Integer>> results = new ArrayList<>();
 		List<Integer> set = new ArrayList<>();
 		set.add(num[0]);
 		subsets.add(set);
-		int startIndex, endIndex;
 		for (int i = 1; i < num.length; i++) {
 			int size = subsets.size();
-			set = new ArrayList<>();
+			List<List<Integer>> tempSubsets = new ArrayList<>();
 			for (int j = 0; j < size; j++) {
-				if (subsets.get(j).size() > 1) {
+				int setSize = subsets.get(j).size();
+				for (int k = 0; k <= setSize; k++) {
 					set = new ArrayList<>(subsets.get(j));
-					startIndex = 1;
-					endIndex = set.size() - 1;
-					while (startIndex <= endIndex) {
-						set.add(startIndex, num[i]);
-						subsets.add(set);
-						startIndex++;
-					}
-					if (set.size() == num.length) {
-						results.add(set);
-					}
-				}
-				set = new ArrayList<>(subsets.get(j));
-				set.add(0, num[i]);
-				subsets.add(set);
-				if (set.size() == num.length) {
-					results.add(set);
-				}
-				set = new ArrayList<>(subsets.get(j));
-				set.add(num[i]);
-				subsets.add(set);
-				if (set.size() == num.length) {
-					results.add(set);
+					set.add(k, num[i]);
+					tempSubsets.add(set);
 				}
 			}
+			subsets = tempSubsets;
 		}
-		System.out.println(results.size());
-		return results;
+		return subsets;
 	}
 
 	public static void main(String[] args) {
