@@ -37,7 +37,7 @@ public class PermutationInAString {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(findPermutation("abcdedca", "cda"));
+		System.out.println(findPermutation("rfgcdadeabcdedca", "eda"));
 	}
 
 }

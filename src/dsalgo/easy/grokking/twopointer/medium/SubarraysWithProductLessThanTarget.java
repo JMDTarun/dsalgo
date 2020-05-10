@@ -23,20 +23,36 @@ public class SubarraysWithProductLessThanTarget {
 
 	public static List<List<Integer>> fundSubArrays(int[] arr, int target) {
 		List<List<Integer>> subArrays = new ArrayList<>();
-		int startPointer = 0;
 		int endPointer = 0;
-		while (startPointer < arr.length) {
-			if (startPointer == endPointer && arr[startPointer] < target) {
-				List<Integer> list = new ArrayList<>();
-				list.add(arr[startPointer]);
+		int startPointer = 0;
+		int product = arr[0];
+		while (startPointer < arr.length && endPointer < arr.length) {
+			if (product < target) {
+				List<Integer> list = null;
+				if (startPointer != endPointer) {
+					list = new ArrayList<>();
+					list.add(arr[endPointer]);
+					subArrays.add(list);
+				}
+				list = new ArrayList<>();
+				for (int i = startPointer; i <= endPointer; i++) {
+					list.add(arr[i]);
+				}
 				subArrays.add(list);
+				endPointer++;
+				if (endPointer < arr.length) {
+					product *= arr[endPointer];
+				}
+			} else {
+				product /= arr[startPointer++];
 			}
 		}
 		return subArrays;
 	}
 
 	public static void main(String[] args) {
-
+		int[] arr = { 8, 2, 6, 5 };
+		System.out.println(fundSubArrays(arr, 50));
 	}
 
 }
