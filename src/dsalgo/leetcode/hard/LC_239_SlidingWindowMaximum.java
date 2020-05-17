@@ -1,7 +1,9 @@
 package dsalgo.leetcode.hard;
 
 import java.util.Deque;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 public class LC_239_SlidingWindowMaximum {
 
@@ -28,32 +30,45 @@ public class LC_239_SlidingWindowMaximum {
 	// 1 3 -1 -3 [5 3 6] 7 6
 	// 1 3 -1 -3 5 [3 6 7] 7
 
-	public int[] maxSlidingWindow(int[] nums, int k) {
+	public static int[] maxSlidingWindow(int[] nums, int k) {
 		int result[] = new int[(nums.length - k) + 1];
 
 		Deque<Integer> deque = new LinkedList<Integer>();
-		int i = 0;
-		for (; i < k; i++) {
+		for (int j = k - 1; j >= 0; j--) {
 			if (deque.isEmpty()) {
-				deque.add(nums[i]);
+				deque.add(nums[j]);
 			} else {
-				if (nums[i] > deque.getLast()) {
-					deque.offerLast(nums[i]);
+				if (nums[j] > deque.getLast()) {
+					deque.offerLast(nums[j]);
 				} else {
-					deque.offerFirst(nums[i]);
+					deque.offerFirst(nums[j]);
 				}
 			}
 		}
+		int i = k;
 		int startIndex = 0;
 		result[startIndex] = deque.getLast();
 		while (i < nums.length) {
-			
+			if (nums[i] > deque.getLast()) {
+				deque.clear();
+				deque.offerLast(nums[i]);
+			} else {
+				deque.addFirst(nums[i]);
+			}
+			deque.removeFirstOccurrence(new Integer(nums[startIndex]));
+			startIndex++;
+			i++;
+			result[startIndex] = deque.getLast();
 		}
 		return result;
 	}
 
 	public static void main(String[] args) {
-
+		int[] arr = new int[] { 1, 2, 3, 1, -1, -2, -3, -4, 2, 1, 3 };
+		int[] result = maxSlidingWindow(arr, 4);
+		for (Integer i : result) {
+			System.out.println(i);
+		}
 	}
 
 }
