@@ -1,4 +1,4 @@
-package dsalgo.easy.grokking.subsets.easy;
+package dsalgo.easy.grokking.modifiedbinarysearch.easy;
 
 public class BitonicArrayMaximum {
 
