@@ -46,8 +46,7 @@ public class EvaluateExpression {
 				}
 				if (i == exp.length() - 1 && secondDigit == Integer.MIN_VALUE) {
 					set.add(Integer.parseInt(exp));
-				}
-				if (firstDigit != Integer.MIN_VALUE && secondDigit != Integer.MIN_VALUE) {
+				} else if (firstDigit != Integer.MIN_VALUE && secondDigit != Integer.MIN_VALUE) {
 					Integer evaluteExpression = evaluteExpression(firstDigit, secondDigit, firstOperator);
 					String newExpression = exp
 							.replace(firstDigit + "" + firstOperator + secondDigit, String.valueOf(evaluteExpression))
