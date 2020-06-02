@@ -42,7 +42,7 @@ public class BitonicArrayMaximum {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(findMax(new int[] { 1, 3, 8, 12, 4, 2 }));
+		System.out.println(findMax(new int[] { 1, 12, 7, 6, 5, 4, 3, 2, 1 }));
 		System.out.println(findMax(new int[] { 3, 8, 3, 1 }));
 		System.out.println(findMax(new int[] { 1, 3, 8, 12 }));
 		System.out.println(findMax(new int[] { 10, 9, 8 }));

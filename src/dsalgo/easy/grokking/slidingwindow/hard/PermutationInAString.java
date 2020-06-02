@@ -38,6 +38,7 @@ public class PermutationInAString {
 
 	public static void main(String[] args) {
 		System.out.println(findPermutation("rfgcdadeabcdedca", "eda"));
+		System.out.println(findPermutation("ppqp", "pq"));
 	}
 
 }
