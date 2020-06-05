@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
+import dsalgo.common.ParanthesisString;
+
 public class BalancedParanthesis {
 
 	public static Set<String> getBalancedParanthesis(int num) {
@@ -50,10 +52,35 @@ public class BalancedParanthesis {
 		return set;
 	}
 
+	public static List<String> getBalancedParanthesisOptimized(int num) {
+		List<String> result = new ArrayList<String>();
+
+		Queue<ParanthesisString> queue = new LinkedList<>();
+		queue.add(new ParanthesisString(0, 0, ""));
+
+		while (!queue.isEmpty()) {
+			ParanthesisString ps = queue.poll();
+			if (ps.openCount == num && ps.closeCount == num) {
+				result.add(ps.str);
+			}
+			if (ps.openCount < num) {
+				queue.add(new ParanthesisString(ps.openCount + 1, ps.closeCount, ps.str + "("));
+			}
+			if (ps.closeCount < ps.openCount) {
+				queue.add(new ParanthesisString(ps.openCount, ps.closeCount + 1, ps.str + ")"));
+			}
+		}
+
+		return result;
+	}
+
 	public static void main(String[] args) {
-		Set<String> balancedParanthesis = getBalancedParanthesis(4);
-		System.out.println(balancedParanthesis);
-		System.out.println(balancedParanthesis.size());
+//		Set<String> balancedParanthesis = getBalancedParanthesis(4);
+//		System.out.println(balancedParanthesis);
+//		System.out.println(balancedParanthesis.size());
+
+		System.out.println(getBalancedParanthesisOptimized(3));
+
 	}
 
 }
