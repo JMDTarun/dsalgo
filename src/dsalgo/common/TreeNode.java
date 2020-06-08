@@ -15,7 +15,7 @@ public class TreeNode {
 
 	@Override
 	public String toString() {
-		return "TreeNode [val=" + val + "]";
+		return "TreeNode [val=" + val + ", left=" + left + ", right=" + right + ", next=" + next + "]";
 	}
 
 	public void printLevelOrder() {
