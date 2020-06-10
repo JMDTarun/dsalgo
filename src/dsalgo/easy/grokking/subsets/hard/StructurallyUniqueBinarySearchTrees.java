@@ -1,4 +1,4 @@
-package dsalgo.easy.grokking.dfs.hard;
+package dsalgo.easy.grokking.subsets.hard;
 
 import java.util.ArrayList;
 import java.util.List;
