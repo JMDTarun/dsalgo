@@ -18,13 +18,13 @@ public class RotateALinkedList {
 		LinkedList last = current;
 		current = head;
 		for (int i = 0; i < numberOfNodesToRotate; i++) {
-			LinkedList temp = current;
-			next = temp.next;
-			last.next = current;
-			current.next = null;
-			last = temp;
-			current = next;
-			head = current;
+			LinkedList temp = current; // 1
+			next = temp.next; //2->
+			last.next = current; // 5 -> 1
+			current.next = null; // 1-> null
+			last = temp; // 1
+			current = next; // 2 -> 
+			head = current; 
 		}
 
 		return head;

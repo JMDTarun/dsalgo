@@ -27,7 +27,7 @@ public class MaximumDistinctElements {
 		}
 
 		int c = 0;
-		while (!minHeap.isEmpty()) {
+		while (!minHeap.isEmpty() && c < r) {
 			Entry<Integer, Integer> peek = minHeap.peek();
 			int value = peek.getValue() - 1;
 			if (value == 1) {
@@ -37,9 +37,6 @@ public class MaximumDistinctElements {
 				peek.setValue(value);
 			}
 			c++;
-			if (c == r) {
-				break;
-			}
 		}
 		if (c < r) {
 			count = count - (r - c);
