@@ -23,25 +23,26 @@ public class NoRepeatSubstring {
 
 	public static int findLength(String str) {
 		char[] arr = str.toCharArray();
+		int windowStart = 0;
 		int windowEnd = 0;
 		int maxLength = 1;
 		Set<Character> set = new HashSet<>();
-		set.add(arr[windowEnd]);
-		while (windowEnd < arr.length - 1) {
-			windowEnd++;
+
+		while (windowEnd < arr.length) {
 			if (set.contains(arr[windowEnd])) {
-				set.clear();
-				set.add(arr[windowEnd]);
+				set.remove(arr[windowStart]);
+				windowStart++;
 			} else {
 				set.add(arr[windowEnd]);
+				windowEnd++;
+				maxLength = Math.max(maxLength, set.size());
 			}
-			maxLength = Math.max(maxLength, set.size());
 		}
 		return maxLength;
 	}
-	
+
 	public static void main(String[] args) {
-		String s = "abccdef";
+		String s = "abccdea";
 		int findLength = findLength(s);
 		System.out.println(findLength);
 	}
