@@ -68,10 +68,10 @@ public class RearrangeStringKDistanceApart {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(reorganizeString("mmpp", 2));
+//		System.out.println(reorganizeString("mmpp", 2));
 		System.out.println(reorganizeString("Programming", 3));
-		System.out.println(reorganizeString("aappa", 3));
-		System.out.println(reorganizeString("aab", 2));
+//		System.out.println(reorganizeString("aappa", 3));
+//		System.out.println(reorganizeString("aab", 2));
 	}
 
 }
