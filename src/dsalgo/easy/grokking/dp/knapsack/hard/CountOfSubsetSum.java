@@ -35,6 +35,10 @@ public class CountOfSubsetSum {
 		return dp[n][sum];
 	}
 
+	public static int countSubsetsBottomUp(int num, int sum, int k, int n) {
+		return 0;
+	}
+
 	public static int countSubsets(int[] num, int k) {
 		Integer[][] arr = new Integer[num.length][k + 1];
 		return countSubsets(arr, num, k, k, 0);

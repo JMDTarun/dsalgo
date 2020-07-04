@@ -65,7 +65,7 @@ public class SchedulingTasks {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(scheduleTasks(new char[] { 'a', 'a', 'a', 'b', 'c', 'c' }, 2));
+		System.out.println(scheduleTasks(new char[] { 'a', 'a', 'a', 'a', 'b', 'c', 'c' }, 2));
 		System.out.println(scheduleTasks(new char[] { 'a', 'b', 'a' }, 3));
 		System.out.println(scheduleTasks(new char[] { 'a', 'a', 'a' }, 2));
 	}
