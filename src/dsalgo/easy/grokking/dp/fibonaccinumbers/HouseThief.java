@@ -43,7 +43,7 @@ public class HouseThief {
 		}
 		return cache[hval.length];
 	}
-
+	
 	public static void main(String[] args) {
 		System.out.println(maxLoot(new int[] { 6, 7, 1, 3, 8, 2, 4 }, 0));
 		System.out.println(maxLootBottomUp(new int[8], new int[] { 6, 7, 1, 3, 8, 2, 4 }, 0));
