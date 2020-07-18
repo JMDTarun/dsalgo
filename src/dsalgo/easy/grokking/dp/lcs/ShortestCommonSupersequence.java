@@ -1,8 +1,18 @@
 package dsalgo.easy.grokking.dp.lcs;
 
-public class LongestCommonSubsequence {
-
+public class ShortestCommonSupersequence {
 	public static int getLongestCommonSubSequence(String str1, String str2, int i, int j) {
+		if (i == 0 || j == 0) {
+			return 0;
+		}
+		if (str1.charAt(i - 1) == str2.charAt(j - 1)) {
+			return 1 + getLongestCommonSubSequence(str1, str2, i - 1, j - 1);
+		}
+		return Math.max(getLongestCommonSubSequence(str1, str2, i - 1, j),
+				getLongestCommonSubSequence(str1, str2, i, j - 1));
+	}
+
+	public static int getLongestCommonSubSequence1(String str1, String str2, int i, int j) {
 		if (i == 0 || j == 0) {
 			return 0;
 		}
@@ -33,10 +43,12 @@ public class LongestCommonSubsequence {
 	}
 
 	public static void main(String[] args) {
-		String str1 = "ABCD";
-		String str2 = "ACED";
-		System.out.println(getLongestCommonSubSequence(str1, str2, str1.length(), str2.length()));
-		System.out.println(getLongestCommonSubSequenceBottomUp(str1, str2));
+		String str1 = "geeks";
+		String str2 = "eke";
+		int length = getLongestCommonSubSequence(str1, str2, str1.length(), str2.length());
+		System.out.println(str1.length() + str2.length() - length);
+		length = getLongestCommonSubSequenceBottomUp(str1, str2);
+		System.out.println(str1.length() + str2.length() - length);
 	}
 
 }

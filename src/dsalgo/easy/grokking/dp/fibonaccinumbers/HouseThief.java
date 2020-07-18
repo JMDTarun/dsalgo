@@ -13,7 +13,7 @@ public class HouseThief {
 		return maxLoot;
 	}
 
-	public static int maxLootBottomUp(int[] cache, int[] hval, int n) {
+	public static int maxLootTopDown(int[] cache, int[] hval, int n) {
 		if (n > hval.length - 1) {
 			return 0;
 		}
@@ -28,7 +28,7 @@ public class HouseThief {
 		return cache[n];
 	}
 
-	public static int maxLootTopDown(int hval[]) {
+	public static int maxLootBottomUp(int hval[]) {
 		int[] cache = new int[hval.length + 1];
 		for (int i = 1; i <= hval.length; i++) {
 			int max = Integer.MIN_VALUE;
@@ -46,8 +46,8 @@ public class HouseThief {
 	
 	public static void main(String[] args) {
 		System.out.println(maxLoot(new int[] { 6, 7, 1, 3, 8, 2, 4 }, 0));
-		System.out.println(maxLootBottomUp(new int[8], new int[] { 6, 7, 1, 3, 8, 2, 4 }, 0));
-		System.out.println(maxLootTopDown(new int[] { 6, 7, 1, 3, 8, 2, 4 }));
+		System.out.println(maxLootTopDown(new int[8], new int[] { 6, 7, 1, 3, 8, 2, 4 }, 0));
+		System.out.println(maxLootBottomUp(new int[] { 6, 7, 1, 3, 8, 2, 4 }));
 	}
 
 }

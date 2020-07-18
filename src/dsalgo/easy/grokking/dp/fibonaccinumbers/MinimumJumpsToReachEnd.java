@@ -71,7 +71,7 @@ public class MinimumJumpsToReachEnd {
 		return minJumps[0];
 	}
 
-	public static int minJumpsTopDown(int arr[]) {
+	public static int minJumpsBottomUp(int arr[]) {
 		int[] matrix = new int[arr.length + 1];
 
 		for (int i = 1; i <= arr.length; i++) {
@@ -107,13 +107,13 @@ public class MinimumJumpsToReachEnd {
 	}
 
 	public static void main(String[] args) {
-		// int[] cache = new int[5];
-		// for (int i = 0; i < cache.length; i++) {
-		// cache[i] = Integer.MAX_VALUE;
-		// }
-		// System.out.println(minJumps(new int[] { 2, 3, 1, 1, 4 }, 0, cache));
-		// System.out.println(minJumpsBottomUp(new int[] { 2, 3, 1, 1, 4 }, 5));
-		// System.out.println(jump(new int[] { 2, 3, 1, 1, 4 }));
+//		 int[] cache = new int[5];
+//		 for (int i = 0; i < cache.length; i++) {
+//		 cache[i] = Integer.MAX_VALUE;
+//		 }
+//		 System.out.println(minJumps(new int[] { 2, 3, 1, 1, 4 }, 0, cache));
+		 //System.out.println(minJumpsBottomUp(new int[] { 2, 3, 1, 1, 4 }, 5));
+		 System.out.println(jump(new int[] { 1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9 }));
 
 		int arr[] = { 1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9 };
 		int n = arr.length;

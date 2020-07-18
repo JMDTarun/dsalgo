@@ -12,7 +12,7 @@ public class Staircase {
 		return countWaysToClimb(stairs - 1) + countWaysToClimb(stairs - 2);
 	}
 
-	public static int countWaysToClimbTopDown(int stairs) {
+	public static int countWaysToClimbBottomUp(int stairs) {
 		int[] matrix = new int[stairs + 1];
 		matrix[0] = 1;
 		for (int i = 1; i <= stairs; i++) {
@@ -23,7 +23,7 @@ public class Staircase {
 
 	public static void main(String[] args) {
 		System.out.println(countWaysToClimb(4));
-		System.out.println(countWaysToClimbTopDown(4));
+		System.out.println(countWaysToClimbBottomUp(4));
 	}
 
 }
