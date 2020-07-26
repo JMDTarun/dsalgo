@@ -29,9 +29,39 @@ public class LongestIncreasingSubsequence {
 		}
 		return Arrays.stream(cache).max().getAsInt();
 	}
+	
+	public static int longestIncreasingSubsequenceTopDown(int[] A) {
+		int[] dp = new int[A.length];
+		return doLongestIncreasingSubsequenceTopDown(A, A.length - 1, dp);
+	}
 
+	private static int doLongestIncreasingSubsequenceTopDown(int[] A, int i, int[] dp) {
+		if (i == 0) {
+			return 1;
+		}
+		if (dp[i] != 0) {
+			return dp[i];
+		}
+
+		int max = 1;
+		for (int j = 0; j < i; j++) {
+			int lis = doLongestIncreasingSubsequenceTopDown(A, j, dp);
+			// We can have 2 possibilities:
+			// 1. Increasing subsequence ending at i (i.e., ith element is part of
+			// subsequence)
+			// 2. Increasing subsequence not ending at i (i.e., ith element is not included
+			// in subsequence)
+			if (A[i] > A[j]) {  // If true, ith element is part of subsequence hence increment result by 1
+				lis += 1;
+			}
+			max = Math.max(max, lis);
+		}
+
+		dp[i] = max;
+		return max;
+	}
 	public static void main(String[] args) {
-		int arr[] = new int[] { 3, 5, 6, 1, 2 };
+		int arr[] = new int[] { 5,2,4,7,3,8,2 };
 		System.out.println(longestIncreasingSubsequence(arr, 0, arr.length, Integer.MIN_VALUE));
 		System.out.println(longestIncreasingSubsequenceBottomUp(arr));
 	}

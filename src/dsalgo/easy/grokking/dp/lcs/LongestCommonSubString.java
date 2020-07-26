@@ -24,8 +24,7 @@ public class LongestCommonSubString {
 				if (j < i) {
 					matrix[i][j] = matrix[i - 1][j];
 				} else {
-					if (i <= str2.length() && j <= str1.length() && str2.charAt(i - 1) == str1.charAt(j - 1)
-							&& i - j == 0) {
+					if (i <= str2.length() && j <= str1.length() && str2.charAt(i - 1) == str1.charAt(j - 1)) {
 						maxValue = 1 + matrix[i - 1][j - 1];
 					} else {
 						maxValue = Math.max(matrix[i][j - 1], matrix[i - 1][j]);
@@ -38,8 +37,8 @@ public class LongestCommonSubString {
 	}
 
 	public static void main(String[] args) {
-		String str1 = "geeks";
-		String str2 = "geeksforgeeks";
+		String str1 = "zxabcdezy";
+		String str2 = "yzabcdezx";
 		System.out.println(getLongestCommonSubString(str1, str2, str1.length(), str2.length()));
 		System.out.println(getLongestCommonSubStringBottomUp(str1, str2));
 	}
