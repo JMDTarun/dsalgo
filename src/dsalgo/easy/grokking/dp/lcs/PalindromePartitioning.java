@@ -31,7 +31,6 @@ public class PalindromePartitioning {
 					+ (palindromePartitioning(str, i, k, cache) + palindromePartitioning(str, k + 1, j, cache));
 			min = Math.min(min, minParitition);
 		}
-		
 		cache[i][j] = min;
 		return cache[i][j];
 	}
