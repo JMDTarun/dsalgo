@@ -45,8 +45,8 @@ public class HouseThief {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(maxLoot(new int[] { 6, 7, 1, 3, 8, 2, 4 }, 0));
-		System.out.println(maxLootTopDown(new int[8], new int[] { 6, 7, 1, 3, 8, 2, 4 }, 0));
+		System.out.println(maxLoot(new int[] { 5, 5, 10, 100, 10, 5 }, 0));
+		System.out.println(maxLootTopDown(new int[7], new int[] { 5, 5, 10, 100, 10, 5 }, 0));
 		System.out.println(maxLootBottomUp(new int[] { 6, 7, 1, 3, 8, 2, 4 }));
 	}
 
