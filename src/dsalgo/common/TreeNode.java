@@ -5,6 +5,7 @@ import java.util.List;
 
 public class TreeNode {
 	public int val;
+	public String strVal;
 	public TreeNode left;
 	public TreeNode right;
 	public TreeNode next;
@@ -13,9 +14,14 @@ public class TreeNode {
 		this.val = val;
 	}
 
+	public TreeNode(String val) {
+		this.strVal = val;
+	}
+
 	@Override
 	public String toString() {
-		return "TreeNode [val=" + val + ", left=" + left + ", right=" + right + ", next=" + next + "]";
+		return "TreeNode [val=" + val + ", strVal=" + strVal + ", left=" + left + ", right=" + right + ", next=" + next
+				+ "]";
 	}
 
 	public void printLevelOrder() {

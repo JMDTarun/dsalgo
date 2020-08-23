@@ -12,13 +12,7 @@ public class NodeDepths {
 			return 1;
 		}
 		int leftDepth = countNodeDepths(treeNode.left) + 1;
-		if (treeNode.right != null) {
-			leftDepth += 1;
-		}
 		int rightDepth = countNodeDepths(treeNode.right) + 1;
-		if (treeNode.left != null) {
-			rightDepth += 1;
-		}
 		return leftDepth + rightDepth;
 	}
 
