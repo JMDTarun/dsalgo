@@ -1,5 +1,6 @@
 package dsalgo.easy.algoexpert.hard;
 
+import java.util.Iterator;
 import java.util.Stack;
 
 public class ShortenPath {
@@ -59,7 +60,6 @@ public class ShortenPath {
 				stack.push(str);
 			}
 		}
-		
 		return "/"+ String.join("/", stack);
 	}
 

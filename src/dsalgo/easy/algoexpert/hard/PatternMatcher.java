@@ -6,10 +6,12 @@ import java.util.Map;
 public class PatternMatcher {
 
 	public static boolean wordPatternMatch(String pattern, String str) {
-		if (pattern.length() == 0 && str.length() == 0)
+		if (pattern.length() == 0 && str.length() == 0) {
 			return true;
-		if (pattern.length() == 0)
+		}
+		if (pattern.length() == 0) {
 			return false;
+		}
 
 		Map<Character, String> map = new HashMap<Character, String>();
 
@@ -21,8 +23,9 @@ public class PatternMatcher {
 			return true;
 		}
 
-		if (i >= pattern.length() || j >= str.length())
+		if (i >= pattern.length() || j >= str.length()) {
 			return false;
+		}
 
 		char c = pattern.charAt(i);
 		for (int k = j + 1; k <= str.length(); k++) {
@@ -37,12 +40,11 @@ public class PatternMatcher {
 					return true;
 			}
 		}
-
 		return false;
 	}
 
 	public static void main(String[] args) {
-		System.out.println(wordPatternMatch("abab", "redratredrat"));
+		System.out.println(wordPatternMatch("abba", "redratratred"));
 	}
 
 }

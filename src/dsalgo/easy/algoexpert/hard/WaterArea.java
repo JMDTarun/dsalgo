@@ -9,6 +9,7 @@ public class WaterArea {
 		int[] cache = new int[arr.length];
 
 		int max = arr[0];
+		int sum = 0;
 		for (int i = 1; i < arr.length - 1; i++) {
 			if (arr[i] < max) {
 				cache[i] = max - arr[i];
@@ -24,9 +25,9 @@ public class WaterArea {
 				cache[i] = 0;
 				min = arr[i];
 			}
+			sum += cache[i];
 		}
-
-		return Arrays.stream(cache).sum();
+		return sum;
 	}
 
 	public static void main(String[] args) {

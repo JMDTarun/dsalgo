@@ -44,6 +44,14 @@ public class LongestPeak {
 			} else if (isIncreasing && arr[i] < arr[i - 1]) {
 				isDecreasing = true;
 				decreasingCount++;
+			} else {
+				if (isIncreasing && isDecreasing) {
+					max = Math.max(max, increasingCount + decreasingCount - 1);
+				}
+				isDecreasing = false;
+				isIncreasing = false;
+				increasingCount = 1;
+				decreasingCount = 1;
 			}
 		}
 		if (isIncreasing && isDecreasing) {
@@ -54,6 +62,16 @@ public class LongestPeak {
 
 	public static void main(String[] args) {
 		System.out.println(findLongestPeak(new int[] { 2, 1, 4, 7, 3, 2, 5, 6, 4, 3, 2 }));
+		System.out.println(findLongestPeak(new int[] { 1, 2, 3, 3, 4, 0, 10, 6, 5, -1, -3, 2, 3 }));  // 0,10,6,5,-1 = 6
+		System.out.println(findLongestPeak(new int[] { 1, 2, 3, 4, 0, 10, 6, 5, -1, -3, 2, 3 }));  // 0,10,6,5,-1 = 6
+		System.out.println(findLongestPeak(new int[] { 2, 1, 4, 7, 3, 2, 5 }));  // 1,4,7,3,2 = 5
+		System.out.println(findLongestPeak(new int[] { 0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0 })); // all = 11
+		System.out.println(findLongestPeak(new int[] { 2, 2, 2 })); // 0
+		System.out.println(findLongestPeak(new int[] { 0, 1, 0 })); // all = 3
+		System.out.println(findLongestPeak(new int[] { 3, 3, 1 })); // 0
+
+		System.out.println(findLongestPeak(new int[] { 2, 3, 3, 2, 0, 2 })); // 0
+		System.out.println(findLongestPeak(new int[] { 0, 0, 1, 0, 0, 1, 1, 1, 1, 1 })); // 0 1 0 = 3
 	}
 
 }
