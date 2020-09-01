@@ -27,6 +27,7 @@ public class WaterArea {
 			}
 			sum += cache[i];
 		}
+		
 		return sum;
 	}
 
