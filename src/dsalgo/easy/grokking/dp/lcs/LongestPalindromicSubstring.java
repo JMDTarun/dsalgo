@@ -21,9 +21,28 @@ public class LongestPalindromicSubstring {
 				getLongestPalindromicSubsequence(str, i, j - 1, 0));
 	}
 
+	public static int getLongestPalindromicSubsequenceStr(String str, int i, int j, int count) {
+		if (i > j) {
+			return count;
+		}
+
+		if (i == j) {
+			return (count + 1);
+		}
+
+		if (str.charAt(i) == str.charAt(j)) {
+			count = getLongestPalindromicSubsequenceStr(str, i + 1, j - 1, count + 2);
+			int max = Math.max(getLongestPalindromicSubsequenceStr(str, i + 1, j, 0),
+					getLongestPalindromicSubsequenceStr(str, i, j - 1, 0));
+			return Math.max(count, max);
+		}
+		return Math.max(getLongestPalindromicSubsequence(str, i + 1, j, 0),
+				getLongestPalindromicSubsequence(str, i, j - 1, 0));
+	}
+
 	public static void main(String[] args) {
 		String str1 = "abacca";
-		System.out.println(getLongestPalindromicSubsequence(str1, 0, str1.length() - 1, 0));
+		System.out.println(getLongestPalindromicSubsequenceStr(str1, 0, str1.length() - 1, 0));
 	}
 
 }

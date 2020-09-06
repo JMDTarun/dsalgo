@@ -2,19 +2,47 @@ package dsalgo.easy.grokking.dp.lcs;
 
 public class LongestCommonSubString {
 
-	public static int getLongestCommonSubString(String str1, String str2, int i, int j) {
+	public static int getLongestCommonSubStringLength(String str1, String str2, int i, int j) {
 		if (i == 0 || j == 0) {
 			return 0;
 		}
 		if (str1.charAt(i - 1) == str2.charAt(j - 1)) {
-			return 1 + getLongestCommonSubString(str1, str2, i - 1, j - 1);
+			return 1 + getLongestCommonSubStringLength(str1, str2, i - 1, j - 1);
 		}
 		int max = 0;
-		int maxValue = Math.max(getLongestCommonSubString(str1, str2, i - 1, j),
-				getLongestCommonSubString(str1, str2, i, j - 1));
+		int maxValue = Math.max(getLongestCommonSubStringLength(str1, str2, i - 1, j),
+				getLongestCommonSubStringLength(str1, str2, i, j - 1));
 		return Math.max(max, maxValue);
 	}
 
+	private static String longestSubString = "";
+	
+	public static String getLongestCommonSubString(String str1, String str2, int i, int j, String s) {
+		if (i == 0 || j == 0) {
+			return "";
+		}
+		if (str1.charAt(i - 1) == str2.charAt(j - 1)) {
+			s = s.concat(String.valueOf(str1.charAt(i - 1)));
+			System.out.println(s);
+			return s + getLongestCommonSubString(str1, str2, i - 1, j - 1, s);
+		}
+		String value = "";
+		String longest = null;
+		String val1 = getLongestCommonSubString(str1, str2, i - 1, j, s);
+		String val2 = getLongestCommonSubString(str1, str2, i, j - 1, s);
+		if (val1.length() > val2.length()) {
+			longest = val1;
+		} else {
+			longest = val2;
+		}
+		if (value.length() > longest.length()) {
+			return value;
+		} else {
+			return longest;
+		}
+		// return Math.max(max, maxValue);
+	}
+	
 	public static int getLongestCommonSubStringBottomUp(String str1, String str2) {
 		int matrix[][] = new int[str1.length() + 1][str2.length() + 1];
 		for (int i = 1; i < matrix.length; i++) {
@@ -37,10 +65,11 @@ public class LongestCommonSubString {
 	}
 
 	public static void main(String[] args) {
-		String str1 = "zxabcdezy";
-		String str2 = "yzabcdezx";
-		System.out.println(getLongestCommonSubString(str1, str2, str1.length(), str2.length()));
+		String str1 = "abacca";
+		String str2 = "accaba";
+		System.out.println(getLongestCommonSubStringLength(str1, str2, str1.length(), str2.length()));
 		System.out.println(getLongestCommonSubStringBottomUp(str1, str2));
+		System.out.println(getLongestCommonSubString(str1, str2, str1.length(), str2.length(), ""));
 	}
 
 }
