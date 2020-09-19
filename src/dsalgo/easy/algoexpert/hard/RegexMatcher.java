@@ -53,148 +53,41 @@ public class RegexMatcher {
 	// p = "mis*is*p*."
 	// Output: false
 
-	public static boolean isMatch(String s, String p) {
-		char[] pattern = p.toCharArray();
-		Stack<Character> stack = new Stack<>();
-
-		for (int i = 0; i < p.length(); i++) {
-			stack.push(pattern[i]);
+	public static boolean isMatching(String s, String p) {
+		if (p.length() == 0) {
+			return s.length() == 0;
 		}
-
-		int start = s.length() - 1;
-		Character precedingCharacter = null;
-		while (start >= 0 && !stack.isEmpty()) {
-			Character pop = stack.pop();
-			precedingCharacter = null;
-			if (pop.charValue() == '*') {
-				precedingCharacter = stack.pop();
-				if (precedingCharacter.charValue() == '.') {
-					if (stack.isEmpty()) {
-						return true;
-					} else {
-						Character reachUpto = stack.peek();
-						if (reachUpto.charValue() != '*' && reachUpto.charValue() != '.') {
-							while (start >= 0 && s.charAt(start) != reachUpto.charValue()) {
-								start--;
-							}
-						} else {
-							while (!stack.isEmpty() && start >= 0 && stack.peek() == '*' || stack.peek() == '.') {
-								if (stack.peek() == '*' || stack.peek() == '.') {
-									stack.pop();
-								}
-								start--;
-							}
-						}
-					}
-				} else {
-					if (s.charAt(start) != precedingCharacter.charValue()) {
-						// start--;
-					} else {
-						while (start >= 0 && s.charAt(start) == precedingCharacter.charValue()) {
-							start--;
-						}
-					}
-				}
-			} else if (pop.charValue() == '.') {
-				start--;
-			} else {
-				if (pop.charValue() != s.charAt(start)) {
-					return false;
-				}
-				start--;
+		if (p.length() > 1 && p.charAt(1) == '*') {
+			if (isMatching(s, p.substring(2))) {
+				return true;
 			}
-		}
-		while (start < 0 && !stack.isEmpty()) {
-			Character pop = stack.pop();
-			if (pop.charValue() == '*') {
-				stack.pop();
-			} else if (precedingCharacter != null) {
-				if (precedingCharacter.charValue() != pop.charValue()) {
-					return false;
-				}
-			} else {
-				return false;
+			if (s.length() > 0 && (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.')) {
+				return isMatching(s.substring(1), p);
 			}
-		}
-		return start >= 0 && stack.isEmpty() ? false : true;
-	}
-
-	public static boolean isMatch1(String s, String p) {
-
-		char[] pattern = p.toCharArray();
-		Stack<Character> stack = new Stack<>();
-
-		for (int i = p.length() - 1; i >= 0; i--) {
-			stack.push(pattern[i]);
-		}
-
-		int start = 0;
-
-		while (start < s.length() && !stack.isEmpty()) {
-			Character pop = stack.pop();
-			if (pop.charValue() == '.') {
-				Character peek = stack.isEmpty() ? null : stack.peek();
-				if (peek != null && peek.charValue() == '*') {
-					stack.pop();
-					char c = s.charAt(start);
-					while (start < s.length() && s.charAt(start) != c) {
-						start++;
-					}
-				} else {
-					start++;
-				}
-			} else if (pop.charValue() == s.charAt(start)) {
-				Character peek = stack.isEmpty() ? null : stack.peek();
-				if (peek != null && peek.charValue() == '*') {
-					stack.pop();
-					while (start < s.length() && s.charAt(start) == pop.charValue()) {
-						start++;
-					}
-				} else {
-					start++;
-				}
-			} else if (!stack.isEmpty() && stack.peek() == '*') {
-				stack.pop();
-				char c = s.charAt(start);
-				while (start < s.length() && s.charAt(start) != c) {
-					start++;
-				}
-			} else {
-				return false;
+			return false;
+		} else {
+			if (s.length() > 0 && (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.')) {
+				return isMatching(s.substring(1), p.substring(1));
 			}
+			return false;
 		}
-
-		while (!stack.isEmpty()) {
-			if (start >= s.length() && stack.peek() != '*') {
-				stack.pop();
-				if (!stack.isEmpty() && stack.peek() != '*') {
-					return false;
-				}
-			}
-			if (!stack.isEmpty()) {
-				stack.pop();
-			}
-		}
-
-		return start < s.length() && stack.isEmpty() ? false : true;
 	}
 
 	public static void main(String[] args) {
-		// System.out.println(isMatch1("aab", "c*a*b"));
-		// System.out.println(isMatch1("mississippi", "mis*is*p*."));
-		// System.out.println(isMatch1("ab", ".*"));
-		// System.out.println(isMatch1("aa", "a"));
-		// System.out.println(isMatch1("aab", ".*c"));
-		// System.out.println(isMatch1("aaa", "ab*a"));
-		// System.out.println(isMatch1("aa", "a*"));
-		// System.out.println(isMatch1("a", "ab*a"));
-//		System.out.println(isMatch1("aaa", "ab*a*c*a"));
-//		 System.out.println(isMatch1("aab", "b.*"));
-		 System.out.println(isMatch1("aasdfasdfasdfasdfas",
-		 "aasdf.*asdf.*asdf.*asdf.*s"));
-		// System.out.println(isMatch1("aab", ".*.*"));
-		// System.out.println(isMatch1("bab", "..*"));
-		// System.out.println(isMatch1("baba", "b*.*"));
+		System.out.println(isMatching("aab", "c*a*b"));
+		System.out.println(isMatching("mississippi", "mis*is*p*."));
+		System.out.println(isMatching("ab", ".*"));
+		System.out.println(isMatching("aa", "a"));
+		System.out.println(isMatching("aab", ".*c"));
+		System.out.println(isMatching("aaa", "ab*a"));
+		System.out.println(isMatching("aa", "a*"));
+		System.out.println(isMatching("a", "ab*a"));
+		System.out.println(isMatching("aaa", "ab*a*c*a"));
+		System.out.println(isMatching("aab", "b.*"));
+		System.out.println(isMatching("aaaa", "a*a"));
+		System.out.println(isMatching("aab", ".*.*"));
+		System.out.println(isMatching("bab", "..*"));
+		System.out.println(isMatching("baba", "b*.*"));
 
 	}
 

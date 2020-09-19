@@ -75,9 +75,9 @@ public class BalancedParanthesis {
 	}
 
 	public static void main(String[] args) {
-//		Set<String> balancedParanthesis = getBalancedParanthesis(4);
-//		System.out.println(balancedParanthesis);
-//		System.out.println(balancedParanthesis.size());
+		// Set<String> balancedParanthesis = getBalancedParanthesis(4);
+		// System.out.println(balancedParanthesis);
+		// System.out.println(balancedParanthesis.size());
 
 		System.out.println(getBalancedParanthesisOptimized(3));
 

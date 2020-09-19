@@ -55,7 +55,7 @@ public class ReverseEveryKElementSubList {
 		linkedList.next.next.next.next.next = new LinkedList(6);
 		linkedList.next.next.next.next.next.next = new LinkedList(7);
 		linkedList.next.next.next.next.next.next.next = new LinkedList(8);
-		LinkedList reverse = reverse(linkedList, 6);
+		LinkedList reverse = reverse(linkedList, 2);
 		while (reverse != null) {
 			System.out.println(reverse.value);
 			reverse = reverse.next;
