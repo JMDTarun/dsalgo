@@ -29,7 +29,7 @@ public class StructurallyUniqueBinarySearchTrees {
 	}
 
 	public static void main(String[] args) {
-		getTreeNodes(1, 3);
+		System.out.println(getTreeNodes(1, 3));
 	}
 
 }

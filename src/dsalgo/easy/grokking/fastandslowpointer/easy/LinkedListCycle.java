@@ -18,13 +18,21 @@ public class LinkedListCycle {
 		return false;
 	}
 
+	private static void deleteNode(LinkedList list, LinkedList delete) {
+		LinkedList next = delete.next;
+		delete.value = next.value;
+		delete.next = delete.next.next;
+		System.out.println(list.value);
+	}
+ 	
 	public static void main(String[] args) {
-		LinkedList linkedList = new LinkedList(101);
-		linkedList.next = new LinkedList(201);
-		linkedList.next.next = new LinkedList(301);
-		linkedList.next.next.next = new LinkedList(401);
-		linkedList.next.next.next.next = new LinkedList(501);
+		LinkedList linkedList = new LinkedList(1);
+		linkedList.next = new LinkedList(2);
+		linkedList.next.next = new LinkedList(3);
+		linkedList.next.next.next = new LinkedList(4);
+		linkedList.next.next.next.next = new LinkedList(5);
 		System.out.println(isLoopExist(linkedList));
+		deleteNode(linkedList, linkedList.next);
 	}
 
 }

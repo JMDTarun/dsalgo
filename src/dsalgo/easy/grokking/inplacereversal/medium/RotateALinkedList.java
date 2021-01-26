@@ -38,7 +38,7 @@ public class RotateALinkedList {
 		linkedList.next.next.next.next = new LinkedList(5);
 		// linkedList.next.next.next.next.next = new LinkedList(6);
 
-		LinkedList reverse = rotate(linkedList, 8);
+		LinkedList reverse = rotate(linkedList, 2);
 		while (reverse != null) {
 			System.out.println(reverse.value);
 			reverse = reverse.next;
