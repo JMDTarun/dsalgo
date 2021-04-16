@@ -2,7 +2,9 @@ package dsalgo.easy.grokking.twopointer.medium;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class TripletSumToZero {
 
@@ -17,25 +19,25 @@ public class TripletSumToZero {
 	// Output: [[-5, 2, 3], [-2, -1, 3]]
 	// Explanation: There are two unique triplets whose sum is equal to zero.
 
-	public static List<List<Integer>> searchTriplets(int[] arr) {
+	public static List<List<Integer>> searchTriplets(int[] nums) {
 		List<List<Integer>> triplets = new ArrayList<>();
-		Arrays.sort(arr);
-
+		Arrays.sort(nums);
+		Set<String> set = new HashSet<String>();
 		List<Integer> triplet = new ArrayList<>();
-		for (int i = 0; i < arr.length; i++) {
+		for (int i = 0; i < nums.length; i++) {
 			int startPointer = i + 1;
-			int endPointer = arr.length - 1;
-			triplet.add(arr[i]);
+			int endPointer = nums.length - 1;
+			triplet.add(nums[i]);
 			while (startPointer < endPointer) {
-				if ((arr[startPointer] + arr[endPointer]) + arr[i] == 0) {
-					triplet.add(arr[startPointer]);
-					triplet.add(arr[endPointer]);
+				if ((nums[startPointer] + nums[endPointer]) + nums[i] == 0) {
+					triplet.add(nums[startPointer]);
+					triplet.add(nums[endPointer]);
 					startPointer++;
 					endPointer--;
 					triplets.add(new ArrayList<>(triplet));
 					triplet.clear();
-					triplet.add(arr[i]);
-				} else if ((arr[startPointer] + arr[endPointer]) + arr[i] <= 0) {
+					triplet.add(nums[i]);
+				} else if ((nums[startPointer] + nums[endPointer]) + nums[i] <= 0) {
 					startPointer++;
 				} else {
 					endPointer--;
@@ -47,7 +49,7 @@ public class TripletSumToZero {
 	}
 
 	public static void main(String[] args) {
-		int[] arr = { -3, 0, 1, 2, -1, 1, -2 };
+		int[] arr = { -1, 0, 1, 2, -1, -4 };
 		System.out.println(searchTriplets(arr));
 	}
 

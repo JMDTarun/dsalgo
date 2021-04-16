@@ -156,5 +156,4 @@ public class TreeNode {
 			perpiece /= 2;
 		}
 	}
-
 }
