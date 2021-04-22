@@ -60,7 +60,7 @@ public class MinimumCoinChange {
 				}
 			}
 		}
-		return matrix1[value];
+		return matrix1[value] == Integer.MAX_VALUE ? -1 : matrix1[value];
 	}
 
 	public static int coinChangeBottomUp(int[] coins, int sum) {

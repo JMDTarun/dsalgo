@@ -9,10 +9,13 @@ import dsalgo.common.TreeNode;
 
 public class RightViewOfABinaryTree {
 
-	public static List<Integer> rightView(TreeNode treeNode) {
+	public static List<Integer> rightView(TreeNode root) {
+		if (root == null) {
+			return new ArrayList<Integer>();
+		}
 		List<Integer> list = new LinkedList<>();
 		Queue<TreeNode> queue = new LinkedList<>();
-		queue.add(treeNode);
+		queue.add(root);
 		int size;
 		while (!queue.isEmpty()) {
 			size = queue.size();

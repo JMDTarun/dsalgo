@@ -27,6 +27,9 @@ public class LongestSubstringWithoutDuplication {
 	// substring.
 
 	public static int lengthOfLongestSubstring(String s) {
+		if (s == null || s.length() == 0) {
+			return 0;
+		}
 		int maxLength = Integer.MIN_VALUE;
 		Map<Character, Integer> map = new HashMap<>();
 		int start = 0;

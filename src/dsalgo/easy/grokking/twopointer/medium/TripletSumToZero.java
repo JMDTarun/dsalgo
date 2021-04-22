@@ -20,9 +20,8 @@ public class TripletSumToZero {
 	// Explanation: There are two unique triplets whose sum is equal to zero.
 
 	public static List<List<Integer>> searchTriplets(int[] nums) {
-		List<List<Integer>> triplets = new ArrayList<>();
+		Set<List<Integer>> triplets = new HashSet<>();
 		Arrays.sort(nums);
-		Set<String> set = new HashSet<String>();
 		List<Integer> triplet = new ArrayList<>();
 		for (int i = 0; i < nums.length; i++) {
 			int startPointer = i + 1;
@@ -37,6 +36,7 @@ public class TripletSumToZero {
 					triplets.add(new ArrayList<>(triplet));
 					triplet.clear();
 					triplet.add(nums[i]);
+
 				} else if ((nums[startPointer] + nums[endPointer]) + nums[i] <= 0) {
 					startPointer++;
 				} else {
@@ -45,7 +45,7 @@ public class TripletSumToZero {
 			}
 			triplet.clear();
 		}
-		return triplets;
+		return new ArrayList<List<Integer>>(triplets);
 	}
 
 	public static void main(String[] args) {

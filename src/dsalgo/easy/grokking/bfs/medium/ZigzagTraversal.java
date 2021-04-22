@@ -1,5 +1,6 @@
 package dsalgo.easy.grokking.bfs.medium;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -9,6 +10,9 @@ import dsalgo.common.TreeNode;
 public class ZigzagTraversal {
 
 	public static List<List<Integer>> traverse(TreeNode treeNode) {
+		if (treeNode == null) {
+			return new ArrayList<List<Integer>>();
+		}
 		List<List<Integer>> list = new LinkedList<>();
 		Queue<TreeNode> queue = new LinkedList<>();
 		queue.add(treeNode);
