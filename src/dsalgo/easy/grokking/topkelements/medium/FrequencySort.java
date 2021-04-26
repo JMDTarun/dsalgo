@@ -20,10 +20,14 @@ public class FrequencySort {
 //	Output: "bbbaac"
 //	Explanation: 'b' appeared three times, 'a' appeared twice, and 'c' appeared only once.
 
-	public static String sortCharactersByFrequency(String str) {
+	public static String frequencySort(String s) {
 
+		if (s == null || s.length() == 0) {
+			return "";
+		}
+		
 		Map<Character, Integer> frequencyMap = new HashMap<Character, Integer>();
-		char[] charArray = str.toCharArray();
+		char[] charArray = s.toCharArray();
 		for (Character c : charArray) {
 			frequencyMap.compute(c, (k, v) -> v != null ? v + 1 : 1);
 		}
@@ -43,8 +47,8 @@ public class FrequencySort {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(sortCharactersByFrequency("Programming"));
-		System.out.println(sortCharactersByFrequency("abcbab"));
+		System.out.println(frequencySort("Programming"));
+		System.out.println(frequencySort("abcbab"));
 	}
 
 }

@@ -2,16 +2,16 @@ package dsalgo.leetcode.medium;
 
 public class LC_55_JumpGame {
 
-	public static boolean canJump(int[] nums, int idx) {
-		if (idx >= nums.length - 1) {
+	public static boolean canJump(int[] nums, int start) {
+		if (start > 0 && (start - 1 + nums[start - 1]) >= nums.length - 1) {
 			return true;
 		}
-		if (nums[idx] == 0) {
+		if (nums[start] == 0) {
 			return false;
 		}
 		boolean canJump = false;
-		for (int i = idx; i < idx + nums[idx]; i++) {
-			canJump = canJump(nums, i + nums[i]);
+		for (int i = start; i < nums[start]; i++) {
+			canJump = canJump(nums, i + 1);
 			if (canJump) {
 				return true;
 			}
@@ -19,8 +19,19 @@ public class LC_55_JumpGame {
 		return canJump;
 	}
 
+	public static boolean canJump(int[] A) {
+		int max = 0;
+		for (int i = 0; i < A.length; i++) {
+			if (i > max) {
+				return false;
+			}
+			max = Math.max(A[i] + i, max);
+		}
+		return true;
+	}
+
 	public static void main(String[] args) {
-		System.out.println(canJump(new int[] { 5, 9, 3, 2, 1, 0, 2, 3, 3, 1, 0, 0 }, 0));
+		System.out.println(canJump(new int[] { 3, 2, 1, 0, 4 }, 0));
 	}
 
 }

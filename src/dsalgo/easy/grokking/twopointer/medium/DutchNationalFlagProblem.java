@@ -47,20 +47,20 @@ public class DutchNationalFlagProblem {
 		}
 	}
 
-	public static void sortOptimized(int[] arr) {
+	public static void sortOptimized(int[] nums) {
 		int startPointer = 0;
-		int endPointer = arr.length - 1;
-		for (int i = 0; i < arr.length && i <= endPointer;) {
-			if (arr[i] == 0) {
-				int temp = arr[startPointer];
-				arr[startPointer] = arr[i];
-				arr[i] = temp;
+		int endPointer = nums.length - 1;
+		for (int i = 0; i < nums.length && i <= endPointer;) {
+			if (nums[i] == 0) {
+				int temp = nums[startPointer];
+				nums[startPointer] = nums[i];
+				nums[i] = temp;
 				startPointer++;
 				i++;
-			} else if (arr[i] == 2) {
-				int temp = arr[endPointer];
-				arr[endPointer] = arr[i];
-				arr[i] = temp;
+			} else if (nums[i] == 2) {
+				int temp = nums[endPointer];
+				nums[endPointer] = nums[i];
+				nums[i] = temp;
 				endPointer--;
 			} else {
 				i++;

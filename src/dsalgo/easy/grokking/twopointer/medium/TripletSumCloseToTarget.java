@@ -25,32 +25,33 @@ public class TripletSumCloseToTarget {
 	// Output: 3
 	// Explanation: The triplet [1, 1, 1] has the closest sum to the target.
 
-	public static int searchTriplet(int[] arr, int targetSum) {
+	public static int searchTriplet(int[] nums, int target) {
 
-		Arrays.sort(arr);
-		int closestValue = Integer.MAX_VALUE;
-		for (int i = 0; i < arr.length; i++) {
+		Arrays.sort(nums);
+		int diff = Integer.MAX_VALUE;
+		for (int i = 0; i < nums.length; i++) {
 			int startPointer = i + 1;
-			int endPointer = arr.length - 1;
+			int endPointer = nums.length - 1;
 			while (startPointer < endPointer) {
-				int sum = arr[startPointer] + arr[endPointer] + arr[i];
+				int sum = nums[startPointer] + nums[endPointer] + nums[i];
 
-				if (Math.abs(targetSum - sum) < Math.abs(targetSum - closestValue)) {
-					closestValue = sum;
+				if (Math.abs(target - sum) < Math.abs(diff)) {
+					diff = target - sum;
 				}
-				
-				if ((arr[startPointer] + arr[endPointer]) + arr[i] <= 0) {
+
+				if (sum < target) {
 					startPointer++;
 				} else {
 					endPointer--;
 				}
 			}
 		}
-		return closestValue;
+		return diff == Integer.MAX_VALUE ? -1 : target - diff;
 	}
 
 	public static void main(String[] args) {
-		System.out.println(searchTriplet(new int[] { 1, 0, 1, 1 }, 100));
+
+		System.out.println(searchTriplet(new int[] { -3, -2, -5, 3, -4 }, -1));
 	}
 
 }
