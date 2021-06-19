@@ -49,13 +49,14 @@ public class LC_239_SlidingWindowMaximum {
 		int startIndex = 0;
 		result[startIndex] = deque.getLast();
 		while (i < nums.length) {
-			if (nums[i] > deque.getLast()) {
+			deque.removeFirstOccurrence(new Integer(nums[startIndex]));
+			if (!deque.isEmpty() && nums[i] > deque.getLast()) {
 				deque.clear();
 				deque.offerLast(nums[i]);
 			} else {
 				deque.addFirst(nums[i]);
 			}
-			deque.removeFirstOccurrence(new Integer(nums[startIndex]));
+
 			startIndex++;
 			i++;
 			result[startIndex] = deque.getLast();
@@ -63,9 +64,36 @@ public class LC_239_SlidingWindowMaximum {
 		return result;
 	}
 
+	public static int[] maxSlidingWindow1(int[] nums, int k) {
+		if (nums == null || k <= 0) {
+			return new int[0];
+		}
+		int n = nums.length;
+		int[] r = new int[n - k + 1];
+		int ri = 0;
+		// store index
+		Deque<Integer> deque = new LinkedList<Integer>();
+		for (int i = 0; i < nums.length; i++) {
+			// remove numbers out of range k
+			while (!deque.isEmpty() && deque.peek() < i - k + 1) {
+				deque.poll();
+			}
+			// remove smaller numbers in k range as they are useless
+			while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
+				deque.pollLast();
+			}
+			// q contains index... r contains content
+			deque.offer(i);
+			if (i >= k - 1) {
+				r[ri++] = nums[deque.peek()];
+			}
+		}
+		return r;
+	}
+
 	public static void main(String[] args) {
-		int[] arr = new int[] { 1, 2, 3, 1, -1, -2, -3, -4, 2, 1, 3 };
-		int[] result = maxSlidingWindow(arr, 4);
+		int[] arr = new int[] { 1, 3, -1, -3, -5, 3, 6, 7 };
+		int[] result = maxSlidingWindow1(arr, 3);
 		for (Integer i : result) {
 			System.out.println(i);
 		}

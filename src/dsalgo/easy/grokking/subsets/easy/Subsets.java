@@ -1,7 +1,9 @@
 package dsalgo.easy.grokking.subsets.easy;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Subsets {
 
@@ -16,23 +18,28 @@ public class Subsets {
 	// Input: [1, 5, 3]
 	// Output: [], [1], [5], [3], [1,5], [1,3], [5,3], [1,5,3]
 
-	public static List<List<Integer>> findSubsets(int[] arr) {
+	public static List<List<Integer>> findSubsets(int[] nums) {
 		List<List<Integer>> subsets = new ArrayList<>();
-		List<Integer> set = new ArrayList<>();
-		subsets.add(set);
-		for (int i = 0; i < arr.length; i++) {
+		List<Integer> list = new ArrayList<>();
+		subsets.add(list);
+		Set<String> set = new HashSet<String>();
+		for (int i = 0; i < nums.length; i++) {
 			int size = subsets.size();
 			for (int j = 0; j < size; j++) {
-				set = new ArrayList<>(subsets.get(j));
-				set.add(arr[i]);
-				subsets.add(set);
+				list = new ArrayList<>(subsets.get(j));
+				list.add(nums[i]);
+				list.sort((a, b) -> a - b);
+				if (!set.contains(list.toString())) {
+					subsets.add(list);
+				}
+				set.add(list.toString());
 			}
 		}
 		return subsets;
 	}
 
 	public static void main(String[] args) {
-		int[] arr = { 1, 5, 3 };
+		int[] arr = { 4, 4, 4, 1, 4 };
 		System.out.println(findSubsets(arr));
 	}
 

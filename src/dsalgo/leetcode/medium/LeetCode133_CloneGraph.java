@@ -1,5 +1,6 @@
 package dsalgo.leetcode.medium;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -16,37 +17,54 @@ public class LeetCode133_CloneGraph {
 		Node clonedNode = new Node();
 		clonedNode.val = node.val;
 		clonedNode.neighbors = new ArrayList<Node>();
-		
+
 		map.put(node, clonedNode);
 
 		while (!queue.isEmpty()) {
 			Node poll = queue.poll();
-			if (!map.containsKey(poll)) {
-				clonedNode = new Node();
-				clonedNode.val = poll.val;
-				clonedNode.neighbors = new ArrayList<Node>();
-				map.put(poll, clonedNode);
-			}
 			List<Node> neighbors = poll.neighbors;
 			for (Node n : neighbors) {
-				boolean isNeighbourToBeAdded = true;
-				for (Node cn : map.get(poll).neighbors) {
-					if (n.val == cn.val) {
-						isNeighbourToBeAdded = false;
-						break;
-					}
-				}
-				if (isNeighbourToBeAdded) {
-					Node clonedNeighbour = new Node();
-					clonedNeighbour.val = n.val;
-					clonedNeighbour.neighbors = new ArrayList<Node>();
-					clonedNode.neighbors.add(clonedNeighbour);
+				if (!map.containsKey(n)) {
+					clonedNode = new Node();
+					clonedNode.val = poll.val;
+					clonedNode.neighbors = new ArrayList<Node>();
+					map.put(n, clonedNode);
 					queue.add(n);
 				}
+				map.get(poll).neighbors.add(map.get(n));
 			}
 		}
 
-		return null;
+		return clonedNode;
+	}
+
+	public static Node cloneGraph1(Node node) {
+		Map<Node, Node> map = new HashMap<>();
+		Queue<Node> queue = new ArrayDeque<>();
+
+		queue.offer(node);
+
+		Node clonedNode = new Node();
+		clonedNode.val = node.val;
+		clonedNode.neighbors = new ArrayList<Node>();
+
+		map.put(node, clonedNode);
+		while (!queue.isEmpty()) {
+			Node h = queue.poll();
+
+			for (Node neighbor : h.neighbors) {
+				if (!map.containsKey(neighbor)) {
+					Node temp = new Node();
+					temp.val = node.val;
+					temp.neighbors = new ArrayList<Node>();
+					map.put(neighbor, temp);
+					queue.offer(neighbor);
+				}
+				map.get(h).neighbors.add(map.get(neighbor));
+			}
+		}
+
+		return map.get(node);
 	}
 
 	public static void main(String[] args) {
@@ -75,7 +93,8 @@ public class LeetCode133_CloneGraph {
 		n4.neighbors.add(n1);
 		n4.neighbors.add(n3);
 
-		cloneGraph(n1);
+		Node cloneGraph = cloneGraph1(n1);
+		System.out.println(cloneGraph);
 	}
 
 }

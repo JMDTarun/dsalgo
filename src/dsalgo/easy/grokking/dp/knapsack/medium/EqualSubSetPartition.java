@@ -1,7 +1,5 @@
 package dsalgo.easy.grokking.dp.knapsack.medium;
 
-import dsalgo.common.AlgoUtil;
-
 public class EqualSubSetPartition {
 
 	public static boolean canPartition(int[] arr) {
@@ -14,7 +12,6 @@ public class EqualSubSetPartition {
 		}
 		sum = sum / 2;
 		int matrix[][] = new int[arr.length + 1][sum + 1];
-		AlgoUtil.print2D(matrix);
 		boolean canPartition = false;
 		for (int i = 1; i < matrix.length; i++) {
 			for (int j = 1; j < matrix[i].length; j++) {
@@ -28,7 +25,6 @@ public class EqualSubSetPartition {
 					}
 				}
 			}
-			AlgoUtil.print2D(matrix);
 			if (canPartition) {
 				break;
 			}

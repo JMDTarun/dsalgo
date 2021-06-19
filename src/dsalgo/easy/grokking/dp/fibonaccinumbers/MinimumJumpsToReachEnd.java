@@ -23,25 +23,17 @@ public class MinimumJumpsToReachEnd {
 	}
 
 	public static int minJumps(int arr[], int l, int h, Integer[] cache) {
-		// Base case: when source
-		// and destination are same
-		if (h == l)
+		if (h == l) {
 			return 0;
-
-		// When nothing is reachable
-		// from the given source
-		if (arr[l] == 0)
+		}
+		if (arr[l] == 0) {
 			return Integer.MAX_VALUE;
+		}
 
 		if (cache[l] != null) {
 			return cache[l];
 		}
 
-		// Traverse through all the points
-		// reachable from arr[l]. Recursively
-		// get the minimum number of jumps
-		// needed to reach arr[h] from these
-		// reachable points.
 		int min = Integer.MAX_VALUE;
 		for (int i = l + 1; i <= h && i <= l + arr[l]; i++) {
 			int jumps = minJumps(arr, i, h, cache);
@@ -52,17 +44,19 @@ public class MinimumJumpsToReachEnd {
 		return min;
 	}
 
-	public static int minimumJumps(int arr[]) {
-		Integer[] minJumps = new Integer[arr.length];
-		minJumps[arr.length - 1] = 0;
+	public static int minimumJumps(int nums[]) {
+		Integer[] minJumps = new Integer[nums.length];
+		minJumps[nums.length - 1] = 0;
 
-		for (int i = arr.length - 2; i >= 0; i--) {
+		for (int i = nums.length - 2; i >= 0; i--) {
 			Integer min = Integer.MAX_VALUE;
-			for (int j = i; j < i + arr[i]; j++) {
-				if (i + arr[i] < arr.length - 1) {
-					min = Math.min(min, minJumps[j + 1] + 1);
+			for (int j = i; j < i + nums[i]; j++) {
+				if (i + nums[i] < nums.length - 1) {
+					if (minJumps[j + 1] != Integer.MAX_VALUE) {
+						min = Math.min(min, minJumps[j + 1] + 1);
+					}
 				} else {
-					min = Math.min(min, minJumps[arr.length - 1] + 1);
+					min = Math.min(min, minJumps[nums.length - 1] + 1);
 					break;
 				}
 			}
@@ -111,13 +105,13 @@ public class MinimumJumpsToReachEnd {
 //		 for (int i = 0; i < cache.length; i++) {
 //		 cache[i] = Integer.MAX_VALUE;
 //		 }
-//		 System.out.println(minJumps(new int[] { 2, 3, 1, 1, 4 }, 0, cache));
-		 //System.out.println(minJumpsBottomUp(new int[] { 2, 3, 1, 1, 4 }, 5));
-		 System.out.println(jump(new int[] { 1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9 }));
+//		 System.out.println(minJumps(new int[] { 1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9 }, 0, cache));
+//		 //System.out.println(minJumpsBottomUp(new int[] { 2, 3, 1, 1, 4 }, 5));
+//		 System.out.println(jump(new int[] { 1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9 }));
 
-		int arr[] = { 1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9 };
+		int arr[] = { 2, 3, 0, 1, 4 };
 		int n = arr.length;
-		Integer cache[] = new Integer[n];
+//		Integer cache[] = new Integer[n];
 		// System.out.print("Minimum number of jumps to reach end is " + minJumps(arr,
 		// 0, n - 1, cache));
 		System.out.println(minimumJumps(arr));

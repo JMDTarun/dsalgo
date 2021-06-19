@@ -46,9 +46,7 @@ public class LongestSubstringWithSameLettersAfterReplacement {
 	}
 
 	public static void main(String[] args) {
-		char[] arr = "odicf".toCharArray();
-		Arrays.sort(arr);
-		System.out.println(findLength("abbcb", 1));
+		System.out.println(findLength("aabcaabbaaa", 1));
 	}
 
 }

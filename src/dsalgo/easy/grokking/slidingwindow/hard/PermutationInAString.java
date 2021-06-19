@@ -36,8 +36,49 @@ public class PermutationInAString {
 		return false;
 	}
 
+	public static boolean findPermutation1(String str, String pattern) {
+		int start = 0;
+		int end = 0;
+		int counter = 0;
+		Map<Character, Integer> frequencyMap = new HashMap<Character, Integer>();
+		for (int i = 0; i < pattern.length(); i++) {
+			frequencyMap.compute(pattern.charAt(i), (k, v) -> v == null ? 1 : v + 1);
+		}
+
+		while (end < str.length()) {
+			char endChar = str.charAt(end);
+
+			if (frequencyMap.containsKey(endChar)) {
+				frequencyMap.compute(endChar, (k, v) -> v - 1);
+				if (frequencyMap.get(endChar) == 0) {
+					counter++;
+				}
+			}
+			if (counter == frequencyMap.size()) {
+				return true;
+			}
+			if (end - start + 1 >= pattern.length()) {
+				char startChar = str.charAt(start++);
+				if (frequencyMap.containsKey(startChar)) {
+					if (frequencyMap.get(startChar) == 0) {
+						counter--;
+					}
+					frequencyMap.compute(startChar, (k, v) -> v + 1);
+				}
+			}
+			end++;
+		}
+		return false;
+	}
+
 	public static void main(String[] args) {
-		System.out.println(findPermutation("rfgcdadeabcdedca", "eda"));
+//		"hello"
+//		"ooolleoooleh"
+
+//		"ab"
+//		"eidboaoo"
+//		
+		System.out.println(findPermutation1("eidboaoo", "ab"));
 		System.out.println(findPermutation("ppqp", "pq"));
 	}
 

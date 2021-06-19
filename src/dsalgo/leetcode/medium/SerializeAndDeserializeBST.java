@@ -25,7 +25,7 @@ public class SerializeAndDeserializeBST {
 	}
 
 	public TreeNode deserialize(String data) {
-		Queue<String> queue = new LinkedList<String>(Arrays.asList(data.split(",")));
+		Queue<String> queue = new LinkedList<>(Arrays.asList(data.split(",")));
 		TreeNode deserializeTemp = deserializeTemp(queue);
 		return deserializeTemp;
 	}

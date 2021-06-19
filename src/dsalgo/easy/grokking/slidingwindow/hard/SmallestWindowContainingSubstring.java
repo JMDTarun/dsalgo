@@ -27,9 +27,9 @@ public class SmallestWindowContainingSubstring {
 	// Explanation: No substring in the given string has all characters of the
 	// pattern.
 
-	public static String findSubsequence(String str, String pattern) {
+	public static String findSubsequence(String s, String t) {
 		Map<Character, Integer> map = new HashMap<Character, Integer>();
-		for (Character c : pattern.toCharArray()) {
+		for (Character c : t.toCharArray()) {
 			map.compute(c, (k, v) -> v != null ? v + 1 : 1);
 		}
 
@@ -38,21 +38,21 @@ public class SmallestWindowContainingSubstring {
 		int minWindowSize = Integer.MAX_VALUE;
 		Map<Character, Integer> tempMap = new HashMap<Character, Integer>();
 		String minSubString = "";
-		while (windowEnd < str.length()) {
-			if (map.containsKey(str.charAt(windowEnd))) {
-				tempMap.compute(str.charAt(windowEnd), (k, v) -> v != null ? v + 1 : 1);
+		while (windowEnd < s.length()) {
+			if (map.containsKey(s.charAt(windowEnd))) {
+				tempMap.compute(s.charAt(windowEnd), (k, v) -> v != null ? v + 1 : 1);
 				if (tempMap.size() == map.size()) {
 					while (true) {
 						if ((windowEnd - windowStart) + 1 < minWindowSize) {
 							minWindowSize = (windowEnd - windowStart) + 1;
-							minSubString = str.substring(windowStart, windowEnd + 1);
+							minSubString = s.substring(windowStart, windowEnd + 1);
 						}
-						if (tempMap.get(str.charAt(windowStart)) == null) {
+						if (tempMap.get(s.charAt(windowStart)) == null) {
 							windowStart++;
 							continue;
 						}
-						tempMap.compute(str.charAt(windowStart), (k, v) -> v - 1);
-						if (tempMap.get(str.charAt(windowStart)) != 0) {
+						tempMap.compute(s.charAt(windowStart), (k, v) -> v - 1);
+						if (tempMap.get(s.charAt(windowStart)) != 0) {
 							windowStart++;
 						} else {
 							windowStart = windowEnd;
@@ -65,14 +65,13 @@ public class SmallestWindowContainingSubstring {
 			}
 			windowEnd++;
 		}
-
 		return minSubString;
 	}
 
 	public static void main(String[] args) {
-		System.out.println(findSubsequence("aabdec", "abc"));
-		System.out.println(findSubsequence("abdabca", "abc"));
-		System.out.println(findSubsequence("adcad", "abc"));
+		System.out.println(findSubsequence("ADOBECODEBANC", "ABC").length());
+//		System.out.println(findSubsequence("abdabca", "abc"));
+//		System.out.println(findSubsequence("adcad", "abc"));
 
 	}
 

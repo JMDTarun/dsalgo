@@ -1,13 +1,17 @@
 package dsalgo.easy.grokking.cyclicsort.easy;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class FindAllDuplicateNumbers {
 
 	// Problem Statement #
-	// We are given an unsorted array containing ‘n’ numbers taken from the range 1
-	// to ‘n’. The array has some duplicates, find all the duplicate numbers without
+	// We are given an unsorted array containing ‘n’ numbers taken from the
+	// range 1
+	// to ‘n’. The array has some duplicates, find all the duplicate numbers
+	// without
 	// using any extra space.
 	//
 	// Example 1:
@@ -20,7 +24,7 @@ public class FindAllDuplicateNumbers {
 	// Output: [3, 5]
 
 	public static List<Integer> duplicateNumbers(int[] nums) {
-		List<Integer> duplicateNumbers = new ArrayList<>();
+		Set<Integer> duplicateNumbers = new HashSet<>();
 		int i = 0;
 		while (i < nums.length) {
 			if (nums[i] == i + 1) {
@@ -36,11 +40,11 @@ public class FindAllDuplicateNumbers {
 				}
 			}
 		}
-		return duplicateNumbers;
+		return new ArrayList<Integer>(duplicateNumbers);
 	}
 
 	public static void main(String[] args) {
-		int[] arr = { 5, 4, 7, 2, 3, 5, 3 };
+		int[] arr = { 4, 3, 2, 7, 8, 2, 3, 1 };
 		System.out.println(duplicateNumbers(arr));
 	}
 

@@ -60,10 +60,13 @@ public class LongestIncreasingPath {
 	}
 
 	public static void main(String[] args) {
-		int matrix[][] = { { 9, 9, 4 }, { 6, 6, 8 }, { 2, 1, 1 } };
+//		int matrix[][] = { { 9, 9, 4 }, { 6, 6, 8 }, { 2, 1, 1 } };
+		int matrix[][] = { { 9, 9 }, { 6, 6 }, { 2, 1 } };
+		System.out.println(matrix.length);
+		System.out.println(matrix[0].length);
 //		int matrix[][] = { { 1 } };
-		LongestIncreasingPath lip = new LongestIncreasingPath();
-		System.out.println(lip.longestIncreasingPath(matrix));
+//		LongestIncreasingPath lip = new LongestIncreasingPath();
+//		System.out.println(lip.longestIncreasingPath(matrix));
 	}
 
 }

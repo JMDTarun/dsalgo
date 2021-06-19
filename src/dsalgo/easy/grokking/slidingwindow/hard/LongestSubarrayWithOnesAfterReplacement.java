@@ -25,9 +25,7 @@ public class LongestSubarrayWithOnesAfterReplacement {
 			if (arr[windowEnd] == 0) {
 				zeroCount++;
 			}
-			if (zeroCount == k) {
-				maxLength = Math.max(maxLength, (windowEnd - windowStart) + 1);
-			} else if (zeroCount > k) {
+			if (zeroCount > k) {
 				while (zeroCount != k) {
 					if (arr[windowStart] == 0) {
 						zeroCount--;
@@ -35,14 +33,15 @@ public class LongestSubarrayWithOnesAfterReplacement {
 					windowStart++;
 				}
 			}
+			maxLength = Math.max(maxLength, (windowEnd - windowStart) + 1);
 			windowEnd++;
 		}
 		return maxLength;
 	}
 
 	public static void main(String[] args) {
-		int[] arr = { 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 };
-		int size = 2;
+		int[] arr = { 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1 };
+		int size = 3;
 		System.out.println(findLength(arr, size));
 	}
 

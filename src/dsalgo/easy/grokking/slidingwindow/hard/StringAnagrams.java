@@ -91,9 +91,46 @@ public class StringAnagrams {
 		}
 		return resultIndicies;
 	}
+	
+	public static List<Integer> findPermutation1(String str, String pattern) {
+		int start = 0;
+		int end = 0;
+		int counter = 0;
+		List<Integer> anagrams = new ArrayList<Integer>();
+		Map<Character, Integer> frequencyMap = new HashMap<Character, Integer>();
+		for (int i = 0; i < pattern.length(); i++) {
+			frequencyMap.compute(pattern.charAt(i), (k, v) -> v == null ? 1 : v + 1);
+		}
+
+		while (end < str.length()) {
+			char endChar = str.charAt(end);
+
+			if (frequencyMap.containsKey(endChar)) {
+				frequencyMap.compute(endChar, (k, v) -> v - 1);
+				if (frequencyMap.get(endChar) == 0) {
+					counter++;
+				}
+			}
+			if (counter == frequencyMap.size()) {
+				anagrams.add(start);
+			}
+			if (end - start + 1 >= pattern.length()) {
+				char startChar = str.charAt(start++);
+				if (frequencyMap.containsKey(startChar)) {
+					if (frequencyMap.get(startChar) == 0) {
+						counter--;
+					}
+					frequencyMap.compute(startChar, (k, v) -> v + 1);
+				}
+			}
+			end++;
+		}
+		return anagrams;
+	}
+
 
 	public static void main(String[] args) {
-		System.out.println(findStringAnagrams("abcabccbbaa", "aabbcc"));
+		System.out.println(findPermutation1("abbcabc", "abc"));
 //		System.out.println(findStringAnagrams("abbcabc", "abc"));
 
 	}
